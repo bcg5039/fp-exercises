@@ -1,10 +1,23 @@
+const {curry} = require('ramda')
 module.exports = {
   forEach: forEach,
   map: map,
-  filter: filter
+  filter: filter,
+  reduce: curry(reduce),
+  compose: compose
 }
 
 // pure functions
+function compose(...fns){
+
+  function execReducer(acc, fn){
+    return fn(acc)
+  }
+  return function (x){
+    return reduce(execReducer, x, fns.reverse())
+  }
+}
+
 function filter(fn, list) {
   let results = []
   forEach(function(v) {
