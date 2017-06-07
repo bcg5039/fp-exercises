@@ -5,6 +5,7 @@ function count(acc, value) {
   return acc + 1
 }
 
+
 function trace(v){
   console.log(v)
   return v
